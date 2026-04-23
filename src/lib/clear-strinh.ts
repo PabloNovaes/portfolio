@@ -3,5 +3,6 @@ export const clearString = (str: string) => {
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
+        .replace("-", "")
         .replace(/\s+/g, "-");
 }
