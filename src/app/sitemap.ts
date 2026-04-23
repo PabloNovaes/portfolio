@@ -7,7 +7,7 @@ const BASE_URL = "https://pablonovaes-me.vercel.app"
 export default function sitemap(): MetadataRoute.Sitemap {
 
     const projectEntries: MetadataRoute.Sitemap = DATA.projects.map((project) => ({
-        url: `${BASE_URL}/projects/${clearString(project.title)}`, // Ajuste o path conforme sua estrutura de rotas
+        url: `${BASE_URL}/${clearString(project.title)}`, // Ajuste o path conforme sua estrutura de rotas
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
