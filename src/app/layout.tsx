@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://opablodev.vercel.app/"),
+  metadataBase: new URL("https://pablonovaes-me.vercel.app/"),
   title: {
     default: `${DATA.name} | Frontend Developer`,
     template: `%s | ${DATA.name}`,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
-    url: "https://opablodev.vercel.app/",
+    url: "https://pablonovaes-me.vercel.app/",
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
@@ -65,7 +65,7 @@ export default function RootLayout({
           fustat.variable,
           geistMono.variable,
         )}>
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
             <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
               <FlickeringGrid

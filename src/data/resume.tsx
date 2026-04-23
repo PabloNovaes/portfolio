@@ -72,8 +72,7 @@ export const DATA = {
       title: "Desenvolvedor Front-End",
       logoUrl: "/livo.svg",
       start: "09/2024",
-      end: "07/2025",
-      // Remova os espaços extras no início de cada linha dentro da crase
+      end: "06/2025",
       description: `Atuei na modernização do ecossistema web, focado em transformar sistemas legados em aplicações modernas e rápidas.
 
 - **Modernização de Stack:** Liderança técnica na migração para **React + Vite**.
@@ -88,7 +87,7 @@ export const DATA = {
       location: "Híbrido",
       title: "Estágio de Desenvolvedor Front-End",
       logoUrl: "/econverse.svg",
-      start: "06/2025",
+      start: "07/2025",
       end: "",
       description: `Foco total no ecossistema **React Native**, desenvolvendo aplicações multiplataforma (iOS e Android). 
 
