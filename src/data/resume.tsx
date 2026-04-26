@@ -1,5 +1,4 @@
 import { Icons } from "@/components/icons";
-import { Project } from "@/components/project-card";
 import { Expressjs } from "@/components/ui/svgs/express";
 import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
 import { Nodejs } from "@/components/ui/svgs/nodejs";
@@ -8,7 +7,6 @@ import { ReactLight } from "@/components/ui/svgs/reactLight";
 import { Tailwind } from "@/components/ui/svgs/tailwindcss";
 import { Typescript } from "@/components/ui/svgs/typescript";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { HomeIcon } from "lucide-react";
 
 export const DATA = {
   name: "Pablo Novaes",
@@ -34,7 +32,6 @@ export const DATA = {
     { name: "Git", icon: Icons.git },
     { name: "Github", icon: GitHubLogoIcon },
   ],
-  navbar: [{ href: "/", icon: HomeIcon, label: "Home" }],
   contact: {
     email: "ppablo.0028922@gmail.com",
     tel: "+55 11 99374-6047",
@@ -181,7 +178,7 @@ Atuei na evolução do produto em produção, focando em melhorias de engajament
           icon: <Icons.playstore className="size-3" />,
         },
       ],
-      image: "./covers/nkstore.png",
+      image: "./covers/nk-store.png",
       video: "",
     },
     {
@@ -190,7 +187,7 @@ Atuei na evolução do produto em produção, focando em melhorias de engajament
       year: 2026,
       members: ["pablonovaes", "iamryaan011", "pedronun"],
       description: `
-Desenvolvimento de uma aplicação mobile estratégica para o **Grupo Sinal**, uma rede de concessionárias. O objetivo foi elevar a experiência digital da marca para além do site existente, entregando uma interface moderna, fluida e acessível. O app foca na jornada de descoberta de veículos, facilitando o agendamento de visitas e o contato direto com consultores via WhatsApp.
+Aplicação mobile para **Grupo Sinal**, uma rede de concessionárias. O objetivo foi elevar a experiência digital da marca para além do site existente, entregando uma interface moderna, fluida e acessível. O app foca na jornada de descoberta de veículos, facilitando o agendamento de visitas e o contato direto com consultores via WhatsApp.
 
 Atuei em todo o ciclo de desenvolvimento do produto, sendo responsável pela arquitetura e implementação de módulos centrais, além de liderar a estratégia de reaproveitamento de código entre as plataformas web e mobile.
 

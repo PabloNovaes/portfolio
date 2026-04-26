@@ -6,8 +6,12 @@ import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Fustat, Geist_Mono } from "next/font/google";
-import Script from "next/script"; // Importado para os dados estruturados
+import Script from "next/script";
 //@ts-ignore
+import { Footer } from "@/components/footer";
+import BlurFade from "@/components/magicui/blur-fade";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { BLUR_FADE_DELAY } from "./(home)/page";
 import "./globals.css";
 
 const fustat = Fustat({
@@ -30,7 +34,7 @@ export const metadata: Metadata = {
   },
   description: DATA.description,
   openGraph: {
-    title: `${DATA.name}`,
+    title: `${DATA.name} | Frontend Developer`,
     description: DATA.description,
     url: "https://pablonovaes-me.vercel.app/",
     siteName: `${DATA.name}`,
@@ -54,10 +58,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: any;
 }>) {
-  // Objeto Schema.org baseado nos seus dados
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -82,7 +87,6 @@ export default function RootLayout({
           fustat.variable,
           geistMono.variable,
         )}>
-        {/* Injeção de Dados Estruturados para o Google Search */}
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -91,21 +95,27 @@ export default function RootLayout({
 
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
-            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
+            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] z-0 pointer-events-none w-full border-t border-border/40">
               <FlickeringGrid
-                className="h-full w-full"
+                className="h-full w-full opacity-20"
                 squareSize={3}
-                gridGap={2}
+                gridGap={6}
+                maxOpacity={0.4}
                 style={{
-                  maskImage: "linear-gradient(to bottom, black, transparent)",
+                  maskImage:
+                    "radial-gradient(ellipse at center, black, transparent 85%)",
                   WebkitMaskImage:
-                    "linear-gradient(to bottom, black, transparent)",
+                    "radial-gradient(ellipse at center, black, transparent 85%)",
                 }}
               />
             </div>
             <div className="relative z-10 max-w-3xl mx-auto py-12 pb-24 sm:py-24 px-6">
               {children}
+              <ProgressiveBlur position="bottom" />
             </div>
+            <BlurFade delay={BLUR_FADE_DELAY * 21}>
+              <Footer />
+            </BlurFade>
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>

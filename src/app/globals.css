@@ -43,6 +43,8 @@
 }
 
 :root {
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -232,5 +234,116 @@
 
   .prose :where(tbody tr:last-child td):not(:where([class~="not-prose"] *)) {
     @apply border-b-0;
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Transição Morph - Imagem */
+  ::view-transition-group(.morph) {
+    animation-duration: 350ms;
+  }
+  ::view-transition-image-pair(.morph) {
+    animation-name: via-blur;
+  }
+  @keyframes via-blur {
+    20% {
+      filter: blur(2px);
+    }
+  }
+
+  /* Entrada - Slide Up */
+  ::view-transition-new(.slide-up) {
+    animation:
+      var(--duration-enter) ease-out 50ms both fade,
+      350ms cubic-bezier(0.34, 1.56, 0.64, 1) both slide-up;
+  }
+
+  /* Saída - Slide Down */
+  ::view-transition-old(.slide-down) {
+    animation:
+      200ms ease-in both fade-out,
+      300ms cubic-bezier(0.4, 0, 1, 0.4) both slide-down;
+  }
+
+  @keyframes fade {
+    from {
+      filter: blur(2px);
+      opacity: 0;
+    }
+    to {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      filter: blur(0);
+      opacity: 1;
+    }
+    to {
+      filter: blur(2px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-y {
+    from {
+      transform: translateY(10px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .button-glow-shadow {
+    box-shadow:
+      inset 0px 1px 2px 0px rgba(255, 255, 255, 0.2),
+      0px 1px 1px -0.75px rgba(0, 0, 0, 0.3),
+      0px 2px 2px -1.5px rgba(0, 0, 0, 0.25),
+      0px 4px 4px -2.25px rgba(0, 0, 0, 0.2),
+      0px 10px 10px -3px rgba(0, 0, 0, 0.15),
+      0px 25px 25px -3.75px rgba(0, 0, 0, 0.1),
+      0px 0px 0px 1px #545454;
   }
 }
