@@ -29,7 +29,7 @@ export function MemberList({
             target="_blank"
             rel="noopener noreferrer"
             className="block relative transition-all duration-200 ease-in-out hover:z-10 hover:-translate-y-1 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:rounded-full">
-            <Avatar className="size-7 border border-transparent hover:border-border cursor-pointer">
+            <Avatar className="max-sm:size-5 size-7 border border-transparent hover:border-border cursor-pointer">
               <AvatarImage
                 src={`https://github.com/${member}.png`}
                 alt={member}
@@ -44,9 +44,9 @@ export function MemberList({
           </a>
         ))}
       </AvatarGroup>
-      <p className="text-muted-foreground me-1.5 text-xs font-semibold">
+      {/* <p className="text-muted-foreground me-1.5 text-xs font-semibold">
         Membros do projeto
-      </p>
+      </p> */}
     </div>
   );
 }

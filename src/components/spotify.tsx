@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { SpotifyCardSkeleton } from "@/components/ui/skeleton";
+import { motion } from "motion/react";
+import { Suspense, useEffect, useState } from "react";
 import { Icons } from "./icons";
 
-export default function SpotifyCard() {
+function SpotifyCardContent() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -35,10 +37,13 @@ export default function SpotifyCard() {
 
   if (loading || !data || data.is_playing === false || !data.item) {
     return (
-      <div className="inline-flex items-center gap-1 px-3 pl-1 py-1.5 border border-dashed rounded-full bg-muted/30 text-[10px] font-medium tracking-wider text-muted-foreground/60">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="inline-flex items-center gap-1 px-3 pl-1 py-1.5 border border-dashed rounded-full bg-muted/30 text-[10px] font-medium tracking-wider text-muted-foreground/60">
         <Icons.spotify className="size-5 animate-pulse" />
         Offline
-      </div>
+      </motion.div>
     );
   }
 
@@ -49,23 +54,33 @@ export default function SpotifyCard() {
   const songUrl = track.external_urls.spotify;
 
   return (
-    <a
+    <motion.a
       href={songUrl}
       target="_blank"
       rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       className="max-w-full group relative animate-in fade-in slide-in-from-top-1 duration-500 inline-flex items-center gap-3 p-1 pr-2 border border-dashed border-zinc-800 rounded-full bg-zinc-900/50 hover:bg-zinc-800 transition-all duration-300 shadow-sm overflow-hidden">
       {/* Glow effect de fundo */}
       <span className="absolute inset-0 rounded-full bg-gradient-to-r from-[#1DB954]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
       <div className="relative size-7 flex-none">
-        <img
+        <motion.img
           src={albumImage}
           alt={title}
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
           className="size-full rounded-full object-cover border border-white/5 group-hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute -bottom-0.5 -right-0.5 size-3 bg-[#1DB954] rounded-full border-2 border-black flex items-center justify-center">
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="absolute -bottom-0.5 -right-0.5 size-3 bg-[#1DB954] rounded-full border-2 border-black flex items-center justify-center">
           <span className="size-1 bg-white rounded-full animate-ping" />
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex items-center gap-2 overflow-hidden relative z-10">
@@ -79,6 +94,14 @@ export default function SpotifyCard() {
       </div>
 
       <Icons.spotify style={{ width: 20, height: 20 }} />
-    </a>
+    </motion.a>
+  );
+}
+
+export default function SpotifyCard() {
+  return (
+    <Suspense fallback={<SpotifyCardSkeleton />}>
+      <SpotifyCardContent />
+    </Suspense>
   );
 }
